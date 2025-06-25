@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         :root {
@@ -24,17 +25,37 @@
             --accent-gradient: linear-gradient(135deg, #ff6b4a 0%, #4a9eff 100%);
             --border-color: #333333;
             --hover-bg: #333333;
+            --bg-primary-rgb: 10, 10, 10;
         }
 
         [data-theme="light"] {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
             --bg-tertiary: #e9ecef;
-            --text-primary: #333333;
-            --text-secondary: #666666;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
             --text-muted: #999999;
             --border-color: #e0e0e0;
             --hover-bg: #f0f0f0;
+            --accent-primary: #2563eb;
+            --accent-secondary: #1d4ed8;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --bg-primary-rgb: 255, 255, 255;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #666666;
+            --border-color: #2a2a2a;
+            --hover-bg: #333333;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #60a5fa;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --bg-primary-rgb: 10, 10, 10;
         }
 
         body {
@@ -44,6 +65,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             transition: all 0.3s ease;
+            padding-top: 0;
         }
 
         .container {
@@ -54,7 +76,7 @@
 
         /* Header */
         header {
-            position: fixed;
+            position: sticky;
             top: 0;
             left: 0;
             right: 0;
@@ -62,6 +84,7 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
+            color: var(--text-primary);
         }
 
         [data-theme="light"] header {
@@ -82,6 +105,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--text-primary);
         }
 
         .nav-links {
@@ -91,7 +115,7 @@
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -105,7 +129,7 @@
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;  /* Increased gap between theme toggle and CTA button */
         }
 
         .theme-toggle {
@@ -123,17 +147,19 @@
             color: var(--accent-primary);
         }
 
-        .cta-button {
+        .nav-controls .cta-button {
             background: var(--accent-gradient);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.6rem 1rem;  /* Increased vertical padding */
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+            margin: 1rem 0;
         }
 
-        .cta-button:hover {
+        .nav-controls .cta-button:hover {
             transform: translateY(-2px);
         }
 
@@ -1280,13 +1306,13 @@
             border-radius: 16px;
             padding: 2rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .tool-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             border-color: var(--accent-primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .tool-icon {
@@ -1433,7 +1459,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -1441,8 +1467,25 @@
             }
         }
 
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .float {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .float-delay-1 {
+            animation-delay: 0.5s;
+        }
+
+        .float-delay-2 {
+            animation-delay: 1s;
         }
 
         /* Responsive Design */
@@ -1709,7 +1752,7 @@
                     <h1>The <span class="highlight">AI Editing Assistant</span> That Gets You</h1>
                     <p>Transform your content with one prompt. Whether you're cutting footage or reinventing a self-portrait, our assistant brings your creative vision to life — with memory, style, and speed.</p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn-primary">
+                        <a href="https://edit.amenta.io/" class="btn-primary">
                             <span>✨</span>
                             Try It Now
                         </a>
@@ -1821,7 +1864,7 @@
                         </div>
                     </div>
                     <div class="editor-cta">
-                        <a href="#" class="btn-secondary">
+                        <a href="https://edit.amenta.io/" class="btn-secondary">
                             <span>🎨</span>
                             Try the Editor
                         </a>
@@ -2207,7 +2250,7 @@
                 <h2>Try It Free — Describe your vision. Watch it become real.</h2>
                 <p>Join thousands of creators who've transformed their content with AI. No credit card required.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn-primary large">
+                    <a href="https://edit.amenta.io/" class="btn-primary large">
                         <span>🚀</span>
                         Try It Now
                     </a>
@@ -2285,34 +2328,37 @@
     </footer>
 
     <script>
-        // Theme Management
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+        
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', () => {
             const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
-            if (currentTheme === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.textContent = '☀️';
-                localStorage.setItem('theme', 'light');
-            }
-        }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+        });
 
-        // Initialize theme from localStorage or default to dark
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const themeToggle = document.querySelector('.theme-toggle');
-            
-            if (savedTheme) {
-                document.body.setAttribute('data-theme', savedTheme);
-                themeToggle.textContent = savedTheme === 'light' ? '☀️' : '🌙';
-            } else {
-                document.body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-btn')) {
+                navLinks.classList.remove('active');
             }
         });
 
@@ -2345,82 +2391,22 @@
         });
 
         // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target); // Stop observing once animated
                 }
             });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            // Start typing animation
-            setTimeout(typeText, 1000);
-            
-            // Start AI processing simulation
-            setTimeout(simulateAIProcessing, 2000);
-
-            // Animate benefit cards
-            document.querySelectorAll('.benefit-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
-                observer.observe(card);
-            });
-
-            // Animate workflow steps
-            document.querySelectorAll('.workflow-step').forEach((step, index) => {
-                step.style.opacity = '0';
-                step.style.transform = 'translateX(-30px)';
-                step.style.transition = `opacity 0.8s ease ${index * 0.3}s, transform 0.8s ease ${index * 0.3}s`;
-                observer.observe(step);
-            });
-
-            // Animate tool cards
-            document.querySelectorAll('.tool-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-                observer.observe(card);
-            });
-
-            // Animate gallery items
-            document.querySelectorAll('.gallery-item').forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = 'scale(0.9)';
-                item.style.transition = `opacity 0.5s ease ${index * 0.05}s, transform 0.5s ease ${index * 0.05}s`;
-                observer.observe(item);
-            });
-
-            // Animate prompt demo sections
-            const promptDemo = document.querySelector('.prompt-demo-grid');
-            if (promptDemo) {
-                promptDemo.style.opacity = '0';
-                promptDemo.style.transform = 'translateY(40px)';
-                promptDemo.style.transition = 'opacity 1s ease 0.5s, transform 1s ease 0.5s';
-                observer.observe(promptDemo);
-            }
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px'
         });
 
-        // Enhanced gallery interactions
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.style.transform = 'scale(1.05)';
-                item.style.zIndex = '10';
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'scale(1)';
-                item.style.zIndex = '1';
-            });
+        // Observe all animated elements
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
         });
 
         // Typing animation for prompt demo
@@ -2535,21 +2521,83 @@
 
         // Initialize with loading state
         document.body.style.opacity = '0';
-        document.body.style.transform = 'translateY(20px)';
-        document.body.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        document.body.style.transform = 'translateY(10px)';
+        document.body.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
 
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = `opacity 0.4s ease ${index * 0.05}s, transform 0.4s ease ${index * 0.05}s`;
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-btn')) {
-                navLinks.classList.remove('active');
-            }
+        document.querySelectorAll('.workflow-step').forEach((step, index) => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateX(-20px)';
+            step.style.transition = `opacity 0.4s ease ${index * 0.15}s, transform 0.4s ease ${index * 0.15}s`;
+        });
+
+        document.querySelectorAll('.pricing-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(15px)';
+            card.style.transition = `opacity 0.4s ease ${index * 0.05}s, transform 0.4s ease ${index * 0.05}s`;
+        });
+
+        document.querySelectorAll('.tool-card').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            item.style.transition = `opacity 0.3s ease ${index * 0.03}s, transform 0.3s ease ${index * 0.03}s`;
+        });
+
+        const promptDemo = document.querySelector('.prompt-demo');
+        if (promptDemo) {
+            promptDemo.style.opacity = '0';
+            promptDemo.style.transform = 'translateY(20px)';
+            promptDemo.style.transition = 'opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s';
+        }
+
+        // Animation functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial page load animation
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'translateY(0)';
+            document.body.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+            // Setup intersection observer for fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '20px'
+            });
+
+            // Apply initial state and observe elements
+            const animatedElements = [
+                '.feature-card',
+                '.workflow-step',
+                '.pricing-card',
+                '.tool-card',
+                '.prompt-demo',
+                '.benefit-card',
+                '.gallery-item'
+            ];
+
+            animatedElements.forEach(selector => {
+                document.querySelectorAll(selector).forEach((el, index) => {
+                    // Set initial state
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = `opacity 0.4s ease ${index * 0.1}s, transform 0.4s ease ${index * 0.1}s`;
+                    // Observe element
+                    observer.observe(el);
+                });
+            });
         });
     </script>
 </body>
