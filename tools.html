@@ -599,13 +599,29 @@
                 margin-bottom: 3rem;
             }
 
+            /* Tools grid - 2 columns on mobile */
             .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
             .tool-card {
-                padding: 2rem;
+                padding: 1.2rem;
+            }
+
+            .tool-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .tool-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .tool-card p {
+                font-size: 0.85rem;
             }
 
             .tools-nav {
@@ -616,6 +632,16 @@
             .tool-nav-btn {
                 padding: 0.6rem 1.2rem;
                 font-size: 0.9rem;
+            }
+
+            /* Showcase grid - 2 columns on mobile */
+            .showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .showcase-item {
+                padding: 1rem;
             }
         }
 
@@ -629,7 +655,7 @@
             }
 
             .tool-card {
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
             .tools-nav {
@@ -641,6 +667,16 @@
             .tool-nav-btn {
                 width: 100%;
                 text-align: center;
+            }
+
+            /* Single column for very small screens */
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Keep showcase 2 columns even on small screens */
+            .showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>

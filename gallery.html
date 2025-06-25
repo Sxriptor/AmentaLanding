@@ -482,9 +482,14 @@
                 padding: 4rem 0;
             }
 
+            /* Gallery grid - 2 columns on mobile */
             .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                border-radius: 12px;
             }
 
             .gallery-filters {
@@ -498,7 +503,29 @@
             }
 
             .before-after-container {
-                height: 200px;
+                height: 180px;
+            }
+
+            .gallery-info {
+                padding: 1rem;
+            }
+
+            .gallery-info h3 {
+                font-size: 1rem;
+            }
+
+            .gallery-info p {
+                font-size: 0.85rem;
+            }
+
+            /* Showcase stats - 2 columns on mobile */
+            .showcase-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
             }
         }
 
@@ -523,7 +550,17 @@
             }
 
             .before-after-container {
-                height: 180px;
+                height: 160px;
+            }
+
+            /* Single column for very small screens */
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Keep stats 2 columns even on small screens */
+            .showcase-stats {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
